@@ -3,11 +3,26 @@
 
 /* General page setup */
 body {
+  background-image: url('your-image.jpg');
+
+  /* 2. Prevent the image from repeating */
+  background-repeat: no-repeat;
+
+  /* 3. Ensure the image covers the entire element while maintaining aspect ratio */
+  background-size: cover;
+
+  /* 4. Center the image within the element */
+  background-position: center;
+
+  /* 5. Optional: Fix the background image so it doesn't scroll with the page */
+  background-attachment: fixed;
   margin: 0;
   padding: 0;
-  background-color: #d8c9a8; /* warm backdrop */
+  background-color: #d8c9a8;
+  /* warm backdrop */
   font-family: 'IM Fell English', serif;
-  color: #2b1d0e; /* ink-like brown */
+  color: #2b1d0e;
+  /* ink-like brown */
 }
 
 /* Main parchment container */
@@ -17,7 +32,7 @@ body {
   padding: 3rem;
   background: #f4ecd8;
   border-radius: 12px;
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.1),
     0 10px 30px rgba(0, 0, 0, 0.25);
 }
@@ -27,10 +42,8 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(
-    rgba(0, 0, 0, 0.03) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px,
+      transparent 1px);
   background-size: 4px 4px;
   pointer-events: none;
 }
@@ -66,13 +79,15 @@ select {
 input[type="range"] {
   width: 100%;
 }
+
 /* Base slider track */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 8px;
-  background: #c8b38a; /* parchment brown */
+  background: #c8b38a;
+  /* parchment brown */
   border-radius: 4px;
   outline: none;
 }
@@ -83,7 +98,8 @@ input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 22px;
   height: 22px;
-  background: #8b5e34; /* rich brown */
+  background: #8b5e34;
+  /* rich brown */
   border-radius: 50%;
   border: 2px solid #5a3b1f;
   cursor: pointer;
