@@ -1,0 +1,222 @@
+/* Import fonts (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=IM+Fell+English&display=swap');
+
+/* General page setup */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #d8c9a8; /* warm backdrop */
+  font-family: 'IM Fell English', serif;
+  color: #2b1d0e; /* ink-like brown */
+}
+
+/* Main parchment container */
+.parchment {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 3rem;
+  background: #f4ecd8;
+  border-radius: 12px;
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.1),
+    0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Optional parchment texture effect */
+.parchment::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 4px 4px;
+  pointer-events: none;
+}
+
+/* Page title */
+h1 {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Section labels / questions */
+label {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+}
+
+/* Inputs */
+input,
+select {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-family: 'IM Fell English', serif;
+  font-size: 1rem;
+  background-color: #fffaf0;
+  border: 1px solid #8b7a5e;
+  border-radius: 4px;
+}
+
+/* Slider */
+input[type="range"] {
+  width: 100%;
+}
+/* Base slider track */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #c8b38a; /* parchment brown */
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Slider thumb (Chrome, Edge, Safari) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: #8b5e34; /* rich brown */
+  border-radius: 50%;
+  border: 2px solid #5a3b1f;
+  cursor: pointer;
+}
+
+/* Slider thumb (Firefox) */
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: #8b5e34;
+  border-radius: 50%;
+  border: 2px solid #5a3b1f;
+  cursor: pointer;
+}
+
+
+.weekday-labels {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #2b1d0e;
+  text-align: center;
+}
+
+.weekday-labels span {
+  width: 1fr;
+  text-align: center;
+}
+
+.form-switch .form-check-input {
+  background-color: #c8b38a;
+  border-color: #8b5e34;
+}
+
+.form-switch .form-check-input:checked {
+  background-color: #8b5e34;
+  border-color: #5a3b1f;
+}
+
+
+/* Accessibility mode tweak */
+body.accessible .weekday-labels {
+  color: #000;
+  font-size: 1rem;
+}
+
+/* Buttons */
+button {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-family: 'IM Fell English', serif;
+  font-size: 1.1rem;
+  background-color: #8b5e34;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #6f4826;
+}
+
+/* Generated name display */
+.generated-name {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid #8b7a5e;
+  text-align: center;
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 2rem;
+}
+
+/* Accessibility Mode */
+body.accessible {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Remove parchment styling */
+body.accessible .parchment {
+  background: #ffffff;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Remove texture */
+body.accessible .parchment::before {
+  display: none;
+}
+
+/* Increase readability */
+body.accessible h1,
+body.accessible .generated-name {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.2rem;
+}
+
+/* Inputs and buttons */
+body.accessible input,
+body.accessible select,
+body.accessible button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.1rem;
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #000;
+}
+
+/* Button contrast */
+body.accessible button {
+  background-color: #000;
+  color: #fff;
+}
+
+body.accessible input[type="range"] {
+  appearance: auto;
+  -webkit-appearance: auto;
+  background: initial;
+}
+
+body.accessible input[type="range"]::-webkit-slider-thumb {
+  appearance: auto;
+  -webkit-appearance: auto;
+}
+
+body.accessible input[type="range"]::-moz-range-thumb {
+  appearance: auto;
+}
+
+body.accessible .form-switch .form-check-input {
+  background-color: initial;
+  border-color: initial;
+}
