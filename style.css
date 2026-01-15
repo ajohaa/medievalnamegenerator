@@ -20,42 +20,37 @@ body {
   padding: 0;
   background-color: #d8c9a8;
   /* warm backdrop */
-  font-family: 'IM Fell English', serif;
-  color: #2b1d0e;
+  font-family: "english", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #5f4934;
   /* ink-like brown */
 }
 
 /* Main parchment container */
 .parchment {
-  background-image: url('parchment.png'); /* path to your image */
-  background-size: cover; /* scale to fit container */
+  background-image: url('parchment3.png');
+  /* path to your image */
+  background-size: contain;
+  /* scale to fit container */
   background-repeat: no-repeat;
   background-position: center;
   max-width: 800px;
   margin: 3rem auto;
   padding: 3rem;
-  background: #f4ecd8;
   border-radius: 12px;
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1),
-    0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* Optional parchment texture effect */
-.parchment::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px,
-      transparent 1px);
-  background-size: 4px 4px;
-  pointer-events: none;
+.content-to-scale {
+    transform: scale(0.8);
+    transform-origin: center;
 }
-
 /* Page title */
 h1 {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 3rem;
+  font-family: "schwarzkopf-new", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5rem;
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -64,7 +59,7 @@ h1 {
 label {
   display: block;
   margin-top: 1.5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 /* Inputs */
@@ -144,63 +139,62 @@ input[type="range"]::-moz-range-thumb {
   border-color: #5a3b1f;
 }
 
+/* Buttons */
+button {
+  border: none; /* Remove button border */
+  padding: 0; /* Remove default padding/margin that can cause issues */
+  cursor: pointer;
+  background: none; /* Remove default background */
+  display: block; /* Make it a block element */
+  margin: 0 auto;
+}
 
-/* Accessibility mode tweak */
+.button-image {
+  display: block; /* Helps prevent whitespace issues */
+  width: 330px; /* Set the desired width */
+  height: auto; /* Maintain image aspect ratio */
+  transform: translateX(-10px);
+
+}
+
+
+.image-button:active {
+  transform: translateY(4px);
+}
+
+/* Generated name display */
+.generated-name {
+  font-family: "schwarzkopf-new", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  padding-top: 2rem;
+  border-top: 2px solid #8b7a5e;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* Accessibility Mode */
+
 body.accessible .weekday-labels {
   color: #000;
   font-size: 1rem;
 }
 
-/* Buttons */
-button {
-  margin-top: 2rem;
-  padding: 0.75rem 1.5rem;
-  font-family: 'IM Fell English', serif;
-  font-size: 1.1rem;
-  background-color: #8b5e34;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+/* Remove background image in accessibility mode */
+body.accessible .parchment-container {
+  background-image: none;
+  background-color: #ffffff;
 }
-
-button:hover {
-  background-color: #6f4826;
-}
-
-/* Generated name display */
-.generated-name {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 2px solid #8b7a5e;
-  text-align: center;
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 2rem;
-}
-
-/* Accessibility Mode */
 body.accessible {
+  font-family: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif;
   background-color: #ffffff;
   color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Remove parchment styling */
-body.accessible .parchment {
-  background: #ffffff;
-  box-shadow: none;
-  border-radius: 0;
-}
-
-/* Remove texture */
-body.accessible .parchment::before {
-  display: none;
 }
 
 /* Increase readability */
 body.accessible h1,
 body.accessible .generated-name {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif;
   font-size: 2.2rem;
 }
 
@@ -208,7 +202,7 @@ body.accessible .generated-name {
 body.accessible input,
 body.accessible select,
 body.accessible button {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Atkinson Hyperlegible', Arial, Helvetica, sans-serif;
   font-size: 1.1rem;
   border: 2px solid #000;
   background-color: #fff;

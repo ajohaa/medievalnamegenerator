@@ -4,154 +4,169 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Medieval Name Generator</title>
-
-    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-
-    <!-- Your custom CSS -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/qoh3nlv.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap"
+      rel="stylesheet"
+      <link
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- Main parchment container -->
-    <div class="parchment position-relative">
-      <h1>Proclaim Thy Name</h1>
-      <h4 class="text-center">
-        Prithee, answer these questions truly, that a name most noble (or most
-        ridiculous) may be bestowed upon thee.
-      </h4>
+    <div class="parchment position-relative mt-4">
+      <div class="content-to-scale">
+        <h1>Proclaim Thy Name</h1>
+        <h4 class="text-center">
+          Prithee, answer these questions truly, that a name most noble (or most
+          ridiculous) may be bestowed upon thee.
+        </h4>
 
-      <form id="nameForm">
-        <!-- Name input -->
-        <label for="userName">Pray tell, what name dost thou bear?</label>
-        <input
-          type="text"
-          id="userName"
-          class="form-control"
-          placeholder="Enter thy name"
-        />
+        <form id="nameForm">
+          <!-- Name input -->
+          <label for="userName">Pray tell, what name dost thou bear?</label>
+          <input
+            type="text"
+            id="userName"
+            class="form-control"
+            placeholder="Enter thy name"
+          />
 
-        <!-- Gender radio buttons -->
-        <label class="mt-4">Art thou known by feminine or masculine terms?
+          <!-- radio buttons -->
+          <label class="mt-4">Art thou a lad or a lady? </label>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              id="male"
+              value="male"
+              checked
+            />
+            <label class="form-check-label" for="male">Lad</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              id="female"
+              value="female"
+            />
+            <label class="form-check-label" for="female">Lady</label>
+          </div>
 
-</label>
-        <div class="form-check">
+          <!-- Weekday slider -->
+          <label for="weekdaySlider" class="mt-4">
+            What day of the week doth it be this very moment?
+          </label>
+          <input
+            type="range"
+            class="form-range"
+            id="weekdaySlider"
+            min="0"
+            max="6"
+            step="1"
+            value="0"
+          />
+          <div class="weekday-labels d-flex justify-content-between mt-2">
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+            <span>Sun</span>
+          </div>
+
+          <!-- Color picker -->
+          <label for="colorPicker" class="mt-4">
+            What hue dost thou find most favorable?
+          </label>
+          <input
+            type="color"
+            id="colorPicker"
+            class="form-control form-control-color"
+            value="#ff0000"
+          />
+
+          <!-- Animal selector -->
+          <label for="animalSelect" class="mt-4">
+            What beast dost thou hold most dear?
+          </label>
+          <select id="animalSelect" class="form-select">
+            <option value="fox">Fox</option>
+            <option value="bear">Bear</option>
+            <option value="wolf">Wolf</option>
+            <option value="bird">Bird</option>
+            <option value="cat">Cat</option>
+            <option value="dragon">Dragon</option>
+            <option value="dog">Dog</option>
+            <option value="frog">Frog</option>
+            <option value="fish">Fish</option>
+            <option value="deer">Deer</option>
+          </select>
+
+          <!-- Birth month -->
+          <label for="birthMonth" class="mt-4">
+            What be thy month of birth?
+          </label>
+          <select id="birthMonth" class="form-select">
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+          </select>
+
+          <!-- Generate button -->
+          <button type="button" id="generateBtn" class="image-button mt-5 mb-5">
+            <img
+              src="revealthyname.png"
+              alt="Reveal Thy Name"
+              class="button-image"
+            />
+          </button>
+
+          <button
+            id="accessibleGenerateBtn"
+            class="accessible-button btn btn-dark w-100"
+            style="display: none"
+          >
+            Reveal Thy Name
+          </button>
+        </form>
+
+        <!-- Generated name output -->
+        <div class="generated-name" id="generatedName">
+          <!-- JS will insert the name here -->
+        </div>
+
+        <!-- Accessibility toggle (optional UI element) -->
+        <div class="form-check form-switch mt-4 text-center">
           <input
             class="form-check-input"
-            type="radio"
-            name="gender"
-            id="male"
-            value="male"
-            checked
+            type="checkbox"
+            id="accessibilityToggle"
           />
-          <label class="form-check-label" for="male">Masculine</label>
+          <label class="form-check-label" for="accessibilityToggle">
+            Accessibility Mode
+          </label>
         </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="gender"
-            id="female"
-            value="female"
-          />
-          <label class="form-check-label" for="female">Feminine</label>
-        </div>
-
-        <!-- Weekday slider -->
-        <label for="weekdaySlider" class="mt-4">
-          What day of the week doth it be this very moment?
-        </label>
-        <input
-          type="range"
-          class="form-range"
-          id="weekdaySlider"
-          min="0"
-          max="6"
-          step="1"
-          value="0"
-        />
-        <div class="weekday-labels d-flex justify-content-between mt-2">
-          <span>Mon</span>
-          <span>Tue</span>
-          <span>Wed</span>
-          <span>Thu</span>
-          <span>Fri</span>
-          <span>Sat</span>
-          <span>Sun</span>
-        </div>
-
-        <!-- Color picker -->
-        <label for="colorPicker" class="mt-4">
-          What hue dost thou find most favorable?
-        </label>
-        <input
-          type="color"
-          id="colorPicker"
-          class="form-control form-control-color"
-          value="#ff0000"
-        />
-
-        <!-- Animal selector -->
-        <label for="animalSelect" class="mt-4">
-          What beast dost thou hold most dear?
-        </label>
-        <select id="animalSelect" class="form-select">
-          <option value="fox">Fox</option>
-          <option value="bear">Bear</option>
-          <option value="wolf">Wolf</option>
-          <option value="bird">Bird</option>
-          <option value="cat">Cat</option>
-          <option value="dragon">Dragon</option>
-          <option value="dog">Dog</option>
-          <option value="frog">Frog</option>
-          <option value="fish">Fish</option>
-          <option value="deer">Deer</option>
-
-        </select>
-
-        <!-- Birth month -->
-        <label for="birthMonth" class="mt-4">
-          What be thy month of birth?
-        </label>
-        <select id="birthMonth" class="form-select">
-          <option>January</option>
-          <option>February</option>
-          <option>March</option>
-          <option>April</option>
-          <option>May</option>
-          <option>June</option>
-          <option>July</option>
-          <option>August</option>
-          <option>September</option>
-          <option>October</option>
-          <option>November</option>
-          <option>December</option>
-        </select>
-
-        <!-- Generate button -->
-        <button type="button" class="btn w-100 mt-4">Reveal Thy Name</button>
-      </form>
-
-      <!-- Generated name output -->
-      <div class="generated-name" id="generatedName">
-        <!-- JS will insert the name here -->
-      </div>
-
-      <!-- Accessibility toggle (optional UI element) -->
-      <div class="form-check form-switch mt-4 text-center">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="accessibilityToggle"
-        />
-        <label class="form-check-label" for="accessibilityToggle">
-          Accessibility Mode
-        </label>
       </div>
     </div>
-
     <!-- Bootstrap JS (optional, but safe to include) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
