@@ -27,3 +27,35 @@ window.onload = function() {
     //input.checked true or false
   });
 }
+
+function getPrefix(weekdaySlider, gender) {
+  let title;
+
+switch (weekdaySlider) {
+  case 0:
+    title = gender === "male" ? "His Majesty" : "Her Majesty";
+    break;
+  case 1:
+    title = gender === "male" ? "Prince" : "Princess";
+    break;
+  case 2:
+    title = gender === "male" ? "Duke" : "Duchess";
+    break;
+  case 3:
+    title = gender === "male" ? "Marquess" : "Marchioness";
+    break;
+  case 4:
+    title = gender === "male" ? "Count" : "Countess";
+    break;
+  case 5:
+    title = gender === "male" ? "Baron" : "Baroness";
+    break;
+  case 6:
+    title = gender === "male" ? "Lord" : "Lady";
+    break;
+  default:
+    title = "Knight";
+    break;
+    return title;
+}
+}
