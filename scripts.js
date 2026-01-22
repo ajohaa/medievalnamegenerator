@@ -7,14 +7,13 @@ try {
     const genderInput = document.querySelector('input[name="gender"]:checked');
     const gender = genderInput ? genderInput.value : 'male';
     const weekday = parseInt(document.getElementById('weekdaySlider').value, 10) || 0;
-
     const prefix = getPrefix(weekday, gender);
     const first = getFirstName(gender);
     const middle = getMiddleName();
     const last = getLastName();
-    const suffix = document.getElementById('birthMonth').value;
+    const epithet = getSuffix();
 
-    const full = `${prefix} ${first} ${middle} ${last} (${suffix})`;
+    const full = `${prefix} ${first} ${middle} ${last} ${epithet}`;
 
     const out = document.getElementById('generatedName');
     if (out) out.textContent = full;
@@ -306,11 +305,7 @@ function getLastName() {
 }
 
 function getSuffix() {
-  const select = document.getElementById('birthMonth');
-  if (!select) return '';
-
-  const suffix = select.options[select.selectedIndex].text.trim();
-
+  const suffix = document.getElementById('birthMonth').value;
   switch (suffix) {
     case 'January':
       return 'the Great';
@@ -336,5 +331,7 @@ function getSuffix() {
       return 'the Bald';
     case 'December':
       return 'the Fearless';
+    default:
+      return '';
   }
 }
