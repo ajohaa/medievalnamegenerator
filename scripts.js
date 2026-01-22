@@ -4,7 +4,21 @@ try {
   const accessibilityToggle = document.getElementById("accessibilityToggle");
 
   function generateName() {
+    const genderInput = document.querySelector('input[name="gender"]:checked');
+    const gender = genderInput ? genderInput.value : 'male';
+    const weekday = parseInt(document.getElementById('weekdaySlider').value, 10) || 0;
 
+    const prefix = getPrefix(weekday, gender);
+    const first = getFirstName(gender);
+    const middle = getMiddleName();
+    const last = getLastName();
+    const suffix = document.getElementById('birthMonth').value;
+
+    const full = `${prefix} ${first} ${middle} ${last} (${suffix})`;
+
+    const out = document.getElementById('generatedName');
+    if (out) out.textContent = full;
+    return full;
   }
   document.getElementById("generateBtn").addEventListener("click", generateName);
   document.getElementById("accessibleGenerateBtn").addEventListener("click", generateName);
@@ -15,12 +29,10 @@ try {
 window.onload = function () {
   // alert("domloaded")
   // alert(accessibilityToggle);
-  if (!accessibilityToggle) {
-    console.error("Accessibility toggle not found");
-    return;
-  }
+  const toggleBox = document.querySelector("#toggleBox");
+  if (!toggleBox) return;
 
-  document.querySelector("#toggleBox").addEventListener("click", () => {
+  toggleBox.addEventListener("click", () => {
     document.body.classList.toggle("accessible");
     // alert("Accessibility mode toggled");
 
@@ -212,7 +224,7 @@ function getMiddleName() {
   } else if (h >= 290 && h < 330) {
     colorName = 'pink';
   } else {
-    colorName = 'Stranger';
+    colorName = 'Unknown';
   }
 
   switch (colorName) {
@@ -250,8 +262,79 @@ function getMiddleName() {
       middleName = 'Ivory';
       break;
     default:
-      middleName = 'Stranger';
+      middleName = 'Unknown';
   }
 
   return middleName;
+}
+
+function getLastName() {
+  const select = document.getElementById('animalSelect');
+  if (!select) return 'Stranger';
+
+  const animalText = select.options[select.selectedIndex].text.trim();
+  const key = animalText.toLowerCase();
+
+  switch (key) {
+    case 'fox':
+      return 'Foxworth';
+    case 'bear':
+      return 'Bearhelm';
+    case 'wolf':
+      return 'Wolfhart';
+    case 'bird':
+      return 'Wingcrest';
+    case 'cat':
+      return 'Whiskerfall';
+    case 'rabbit':
+      return 'Hopperton';
+    case 'horse':
+      return 'Swiftmane';
+    case 'dragon':
+      return 'Dragonheart';
+    case 'dog':
+      return 'Bramblehound';
+    case 'frog':
+      return 'Croakford';
+    case 'fish':
+      return 'Deepfin';
+    case 'deer':
+      return 'Staghorn';
+    default:
+      return 'Stranger';
+  }
+}
+
+function getSuffix() {
+  const select = document.getElementById('birthMonth');
+  if (!select) return '';
+
+  const suffix = select.options[select.selectedIndex].text.trim();
+
+  switch (suffix) {
+    case 'January':
+      return 'the Great';
+    case 'February':
+      return 'the Terrible';
+    case 'March':
+      return 'the Magnificent';
+    case 'April':
+      return 'the Hairy';
+    case 'May':
+      return 'the Wise';
+    case 'June':
+      return 'the Conqueror';
+    case 'July':
+      return 'the Stupid';
+    case 'August':
+      return 'the Smelly';
+    case 'September':
+      return 'the Hermit';
+    case 'October':
+      return 'the Unyielding';
+    case 'November':
+      return 'the Bald';
+    case 'December':
+      return 'the Fearless';
+  }
 }
