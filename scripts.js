@@ -56,138 +56,201 @@ function getPrefix(weekdaySlider, gender) {
     default:
       title = "Knight";
       break;
-      return title;
   }
+  return title;
 }
 
-function getFirstName() {
-  const firstName = document.getElementById("userName").value;
-  const firstLetter = firstName.charAt(0).toUpperCase();
-  return firstLetter;
+function getFirstName(gender) {
+  const inputName = document.getElementById("userName").value || "";
+  const firstLetter = inputName.charAt(0).toUpperCase();
+  let chosenName = inputName || "Nameless";
 
   switch (firstLetter) {
     case 'A':
-      firstName = gender === "male" ? "Archibald" : "Amelia";
+      chosenName = gender === "male" ? "Archibald" : "Amelia";
       break;
     case 'B':
-      firstName = gender === "male" ? "Bartholomew" : "Beatrice";
+      chosenName = gender === "male" ? "Bartholomew" : "Beatrice";
       break;
     case 'C':
-      firstName = gender === "male" ? "Cedric" : "Cecilia";
+      chosenName = gender === "male" ? "Cedric" : "Cecilia";
       break;
     case 'D':
-      firstName = gender === "male" ? "Dominic" : "Dorothea";
+      chosenName = gender === "male" ? "Dominic" : "Dorothea";
       break;
     case 'E':
-      firstName = gender === "male" ? "Edmund" : "Elizabeth";
+      chosenName = gender === "male" ? "Edmund" : "Elizabeth";
       break;
     case 'F':
-      firstName = gender === "male" ? "Francis" : "Fiona";
+      chosenName = gender === "male" ? "Francis" : "Fiona";
       break;
     case 'G':
-      firstName = gender === "male" ? "Godfrey" : "Genevieve";
+      chosenName = gender === "male" ? "Godfrey" : "Genevieve";
       break;
     case 'H':
-      firstName = gender === "male" ? "Henry" : "Helena";
+      chosenName = gender === "male" ? "Henry" : "Helena";
       break;
     case 'I':
-      firstName = gender === "male" ? "Isaac" : "Isabella";
+      chosenName = gender === "male" ? "Isaac" : "Isabella";
       break;
     case 'J':
-      firstName = gender === "male" ? "Jameson" : "Joan";
+      chosenName = gender === "male" ? "Jameson" : "Joan";
       break;
     case 'K':
-      firstName = gender === "male" ? "Kieran" : "Katherine";
+      chosenName = gender === "male" ? "Kieran" : "Katherine";
       break;
     case 'L':
-      firstName = gender === "male" ? "Lionel" : "Lucille";
+      chosenName = gender === "male" ? "Lionel" : "Lucille";
       break;
     case 'M':
-      firstName = gender === "male" ? "Maurice" : "Margaret";
+      chosenName = gender === "male" ? "Maurice" : "Margaret";
       break;
     case 'N':
-      firstName = gender === "male" ? "Nathaniel" : "Nora";
+      chosenName = gender === "male" ? "Nathaniel" : "Nora";
       break;
-     case 'O':
-      firstName = gender === "male" ? "Oswald" : "Olivia";
+    case 'O':
+      chosenName = gender === "male" ? "Oswald" : "Olivia";
       break;
     case 'P':
-      firstName = gender === "male" ? "Percival" : "Penelope";
+      chosenName = gender === "male" ? "Percival" : "Penelope";
       break;
     case 'Q':
-      firstName = gender === "male" ? "Quentin" : "Quinn";
+      chosenName = gender === "male" ? "Quentin" : "Quinn";
       break;
     case 'R':
-      firstName = gender === "male" ? "Reginald" : "Rosalind";
+      chosenName = gender === "male" ? "Reginald" : "Rosalind";
       break;
     case 'S':
-      firstName = gender === "male" ? "Sylvester" : "Seraphina";
-      break; 
+      chosenName = gender === "male" ? "Sylvester" : "Seraphina";
+      break;
     case 'T':
-      firstName = gender === "male" ? "Theodore" : "Theresa";
+      chosenName = gender === "male" ? "Theodore" : "Theresa";
       break;
     case 'U':
-      firstName = gender === "male" ? "Ulric" : "Ursula";
+      chosenName = gender === "male" ? "Ulric" : "Ursula";
       break;
     case 'V':
-      firstName = gender === "male" ? "Victor" : "Vivienne";
+      chosenName = gender === "male" ? "Victor" : "Vivienne";
       break;
     case 'W':
-      firstName = gender === "male" ? "William" : "Winifred";
+      chosenName = gender === "male" ? "William" : "Winifred";
       break;
     case 'X':
-      firstName = gender === "male" ? "Xavier"  : "Ximena";
+      chosenName = gender === "male" ? "Xavier" : "Ximena";
       break;
     case 'Y':
-      firstName = gender === "male" ? "Yvain" : "Yolanda";
+      chosenName = gender === "male" ? "Yvain" : "Yolanda";
       break;
     case 'Z':
-      firstName = gender === "male" ? "Zachary" : "Zinnia";
+      chosenName = gender === "male" ? "Zachary" : "Zinnia";
       break;
-      return firstName;
+    default:
+      break;
   }
+
+  return chosenName;
 }
 
 function getMiddleName() {
-  const color = document.getElementById("colorPicker").value;
+  const hex = document.getElementById("colorPicker").value;
   let middleName;
 
-  switch (color) {
-    case "red":
-      middleName = "Crimson";
+  function hexToRgb(h) {
+    const hexVal = h.replace('#', '');
+    const bigint = parseInt(hexVal, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return { r, g, b };
+  }
+
+  function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+
+    if (max === min) {
+      h = s = 0;
+    } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+    }
+
+    return { h: h * 360, s, l };
+  }
+
+  const { r, g, b } = hexToRgb(hex);
+  const { h, s, l } = rgbToHsl(r, g, b);
+
+  let colorName;
+  if (l < 0.1) {
+    colorName = 'black';
+  } else if (l > 0.9) {
+    colorName = 'white';
+  } else if (s < 0.15) {
+    colorName = 'grey';
+  } else if (h >= 15 && h < 45 && l < 0.55) {
+    colorName = 'brown';
+  } else if ((h >= 345 && h <= 360) || (h >= 0 && h < 15)) {
+    colorName = 'red';
+  } else if (h >= 15 && h < 45) {
+    colorName = 'orange';
+  } else if (h >= 45 && h < 75) {
+    colorName = 'yellow';
+  } else if (h >= 75 && h < 165) {
+    colorName = 'green';
+  } else if (h >= 165 && h < 260) {
+    colorName = 'blue';
+  } else if (h >= 260 && h < 290) {
+    colorName = 'purple';
+  } else if (h >= 290 && h < 330) {
+    colorName = 'pink';
+  } else {
+    colorName = 'Stranger';
+  }
+
+  switch (colorName) {
+    case 'red':
+      middleName = 'Crimson';
       break;
-    case "orange":
-      middleName = "Flameborn";
+    case 'orange':
+      middleName = 'Flameborn';
       break;
-    case "yellow":
-      middleName = "Sunward";
+    case 'yellow':
+      middleName = 'Sunward';
       break;
-    case "green":
-      middleName = "Verdant";
+    case 'green':
+      middleName = 'Verdant';
       break;
-    case "blue":
-      middleName = "Azure";
+    case 'blue':
+      middleName = 'Azure';
       break;
-    case "purple":
-      middleName = "Nightviolet";
+    case 'purple':
+      middleName = 'Nightviolet';
       break;
-    case "pink":
-      middleName = "Rosethorn";
+    case 'pink':
+      middleName = 'Rosethorn';
       break;
-    case "brown":
-      middleName = "Oakroot";
+    case 'brown':
+      middleName = 'Oakroot';
       break;
-    case "black":
-      middleName = "Umbra";
+    case 'black':
+      middleName = 'Umbra';
       break;
-    case "grey":
-      middleName = "Stoneveil";
+    case 'grey':
+      middleName = 'Stoneveil';
       break;
-    case "white":
-      middleName = "Ivory";
+    case 'white':
+      middleName = 'Ivory';
       break;
     default:
-      middleName = "Stranger";
+      middleName = 'Stranger';
   }
 
   return middleName;
