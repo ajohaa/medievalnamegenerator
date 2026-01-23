@@ -4,35 +4,23 @@
 /* General page setup */
 body {
   background-image: url('background.png');
-
-  /* 2. Prevent the image from repeating */
   background-repeat: no-repeat;
-
-  /* 3. Ensure the image covers the entire element while maintaining aspect ratio */
   background-size: cover;
-
-  /* 4. Center the image within the element */
   background-position: center;
-
-  /* 5. Optional: Fix the background image so it doesn't scroll with the page */
   background-attachment: fixed;
   margin: 0;
   padding: 0;
   background-color: #d8c9a8;
-  /* warm backdrop */
   font-family: "english", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #5f4934;
-  /* ink-like brown */
 }
 
 /* Main parchment container */
 .parchment {
   background-image: url('parchment3.png');
-  /* path to your image */
   background-size: contain;
-  /* scale to fit container */
   background-repeat: no-repeat;
   background-position: center;
   max-width: 800px;
@@ -42,9 +30,17 @@ body {
 }
 
 @keyframes parchmentFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .parchment {
@@ -52,13 +48,18 @@ body {
 }
 
 .content-to-scale {
-    transform: scale(0.8);
-    transform-origin: center;
+  transform: scale(0.75);
+  transform-origin: center;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .content-to-scale {
@@ -74,7 +75,8 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
 }
- h4 {
+
+h4 {
   font-family: 'IM Fell English', serif;
   font-weight: 500;
   font-style: normal;
@@ -169,21 +171,22 @@ input[type="range"]::-moz-range-thumb {
 
 /* Buttons */
 button {
-  border: none; /* Remove button border */
-  padding: 0; /* Remove default padding/margin that can cause issues */
+  border: none;
+  padding: 0;
   cursor: pointer;
-  background: none; /* Remove default background */
-  display: block; /* Make it a block element */
+  background: none;
+  display: block;
   margin: 0 auto;
 }
 
 .button-image {
-  display: block; /* Helps prevent whitespace issues */
-  width: 330px; /* Set the desired width */
-  height: auto; /* Maintain image aspect ratio */
+  display: block;
+  width: 330px;
+  height: auto;
   transform: translateX(-10px);
 
 }
+
 .image-button:active {
   transform: translateY(4px);
 }
@@ -199,6 +202,106 @@ button {
   font-size: 3.2rem;
 }
 
+/* Responsive styles */
+
+@media (max-width: 740px) {
+  .content-to-scale {
+    transform: scale(0.6);
+    width: auto;
+  }
+
+  .parchment {
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 670px) {
+  .content-to-scale {
+    transform: scale(0.55);
+    transform-origin: center;
+  }
+
+  .parchment {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 6px;
+  }
+
+  .button-image {
+    width: 280px;
+    transform: translateX(-5px);
+  }
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  h4 {
+    font-size: 2rem;
+  }
+
+  h1,
+  h4 {
+    text-align: center;
+  }
+}
+
+/* Small screens: remove scaling, reduce padding, increase readability */
+@media (max-width: 565px) {
+  .content-to-scale {
+    transform: scale(0.5);
+    transform-origin: center;
+  }
+
+  .parchment {
+    padding: 0rem;
+    margin: 0rem;
+    border-radius: 0px;
+  }
+
+  .button-image {
+    width: 220px;
+    transform: none;
+  }
+
+  .weekday-labels {
+    font-size: 0.85rem;
+    gap: 0.25rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.95rem;
+  }
+
+  .generated-name {
+    font-size: 3rem;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+  }
+
+  h1,
+  h4 {
+    text-align: center;
+  }
+
+  .content-to-scale,
+  .parchment {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
 
 /* Accessibility Mode disables motion, imagery, and audio for improved usability */
 
@@ -212,6 +315,7 @@ body.accessible .parchment {
   background-image: none !important;
   background-color: #ffffff;
 }
+
 body.accessible {
   background-image: none !important;
   background-color: #ffffff;
@@ -242,6 +346,7 @@ body.accessible button {
   background-color: #fff;
   color: #000;
 }
+
 body.accessible #generateBtn {
   display: none !important;
 }
