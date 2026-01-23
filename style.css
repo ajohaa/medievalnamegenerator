@@ -193,7 +193,7 @@ button {
 
 /* Generated name display */
 .generated-name {
-  font-family: "schwarzkopf-new", sans-serif;
+  font-family: "IM Fell English", sans-serif;
   font-weight: 400;
   font-style: normal;
   padding-top: 2rem;
@@ -202,6 +202,18 @@ button {
   font-size: 3.2rem;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0; 
+  }
+  100% {
+    opacity: 1;
+}
+}
+
+.generated-name {
+  animation: fadeIn 2s ease-in;
+}
 /* Responsive styles */
 
 @media (max-width: 740px) {
