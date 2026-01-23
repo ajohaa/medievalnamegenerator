@@ -19,8 +19,10 @@ try {
     if (out) out.textContent = full;
     return full;
   }
-  document.getElementById("generateBtn").addEventListener("click", generateName);
-  document.getElementById("accessibleGenerateBtn").addEventListener("click", generateName);
+  document.getElementById('nameForm').addEventListener('submit', function(e) {
+  e.preventDefault(); // keep page from reloading
+  generateName();
+});
 } catch (error) {
   alert(error)
 }

@@ -184,8 +184,6 @@ button {
   transform: translateX(-10px);
 
 }
-
-
 .image-button:active {
   transform: translateY(4px);
 }
@@ -198,10 +196,11 @@ button {
   padding-top: 2rem;
   border-top: 2px solid #8b7a5e;
   text-align: center;
-  font-size: 2rem;
+  font-size: 3.2rem;
 }
 
-/* Accessibility Mode */
+
+/* Accessibility Mode disables motion, imagery, and audio for improved usability */
 
 body.accessible .weekday-labels {
   color: #000;
